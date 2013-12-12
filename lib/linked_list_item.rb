@@ -12,10 +12,10 @@ class LinkedListItem
 
   end
 
-  def test_args_to_new_must_match_initialize
+  def test_for_raise_NoMethod_Error #AA
       assert_raise(NoMethodError) do
         LinkedListItem.new
-        llil.next_list_item = "foo"
+        llil.next_list_item = "llil1"
       end
   end
 
