@@ -3,7 +3,7 @@ class LinkedListItem
   #attr_accessor :my_variable creates the methods to assign and to read the
   #instance variable '@my_variable'. Which saves you from defining these
   #methods yourself
-  include Comparable
+  #include Comparable
   #The Comparable mixin is used by classes whose objects may be ordered.
   #The class must define the <=> operator, which compares the receiver
   #against another object, returning -1, 0, or +1 depending on whether
@@ -17,11 +17,10 @@ class LinkedListItem
     @payload = "foo"
   end
 
-  def test_03_cant_set_self_as_next_list_item #AA
-    assert_raise (ArgumentError) do
-      next_list_item.lli1
-    end
+  raise NoMethodError do
+
   end
+
 
 end
 
