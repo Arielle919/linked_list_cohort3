@@ -33,6 +33,9 @@ class LinkedListItem
       return -1 if self.payload.is_a?(String) && second_list_item.payload.is_a?(Symbol)#assert "bar" < :apple
       #!!Important: self.payload is the reciever and it is less than the
       #object being compared to it = -1 , the other way around = 1 :)
+      return -1 if self.payload.is_a?(Fixnum) && second_list_item.payload.is_a?(String) #1 < string "bar" Number is less than string
+      return 1 if self.payload.is_a?(String) && second_list_item.payload.is_a?(Fixnum) #"bar" > 1
+
       self.payload <=> second_list_item.payload
     end
   end
