@@ -12,21 +12,29 @@ class LinkedListItem
   #Comparable uses <=> to implement the conventional comparison operators
   #(<, <=, ==, >=, and >) and the method between?.
 
+  #everything with def is a method for the class LinkedListItem
   def initialize(payload)
     @payload = payload
   end
 
   def next_list_item=(next_list_item) #initializes this method to be used
     if next_list_item == self#self in instance of this class http://www.jimmycuadra.com/posts/self-in-ruby
-      raise ArgumentError
+      raise ArgumentError, "Self can't be set as following item"
     else
       @next_list_item = next_list_item
     end
+
     def last? #the last item is nil
       @next_list_item.nil?
     end
+
+    def <=> (second_list_item) #using comparable here
+      return 1 if self.payload.is_a?(Symbol) && second_list_item.payload.is_a?(String)
+      return -1 if self.payload.is_a?(String) && second_list_item.payload.is_a?(Symbol)#assert "bar" < :apple
+      #!!Important: self.payload is the reciever and it is less than the
+      #object being compared to it = -1 , the other way around = 1 :)
+      self.payload <=> second_list_item.payload
+    end
   end
-
-
 
 end
