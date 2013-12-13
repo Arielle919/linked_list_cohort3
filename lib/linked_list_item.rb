@@ -3,7 +3,7 @@ class LinkedListItem
   #attr_accessor :my_variable creates the methods to assign and to read the
   #instance variable '@my_variable'. Which saves you from defining these
   #methods yourself
-  #include Comparable
+  include Comparable
   #The Comparable mixin is used by classes whose objects may be ordered.
   #The class must define the <=> operator, which compares the receiver
   #against another object, returning -1, 0, or +1 depending on whether
@@ -11,25 +11,20 @@ class LinkedListItem
   #If the other object is not comparable then the <=> operator should return nil.
   #Comparable uses <=> to implement the conventional comparison operators
   #(<, <=, ==, >=, and >) and the method between?.
-  #http://ruby-doc.org/core-2.0.0/Comparable.html
 
   def initialize(payload)
-    @payload = "foo"
+    @payload = payload
   end
 
-  raise NoMethodError do
+  def next_list_item=(next_list_item)
+    if next_list_item == self
+      raise ArgumentError
+    else
+      @next_list_item = next_list_item
+    end
 
   end
+
 
 
 end
-
-
-
-
-
-
-
-
-
-
