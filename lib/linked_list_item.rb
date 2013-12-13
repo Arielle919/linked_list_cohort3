@@ -16,13 +16,15 @@ class LinkedListItem
     @payload = payload
   end
 
-  def next_list_item=(next_list_item)
-    if next_list_item == self
+  def next_list_item=(next_list_item) #initializes this method to be used
+    if next_list_item == self#self in instance of this class http://www.jimmycuadra.com/posts/self-in-ruby
       raise ArgumentError
     else
       @next_list_item = next_list_item
     end
-
+    def last? #the last item is nil
+      @next_list_item.nil?
+    end
   end
 
 
