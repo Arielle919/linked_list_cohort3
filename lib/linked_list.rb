@@ -35,6 +35,22 @@ class LinkedList
       initial_node.payload
     end
   end
+#_----
+
+  def size
+    return @count
+  end
+
+   def last
+    return @head_item if @head_item == nil
+
+    initial_node = @head_item
+    until initial_node.last? do
+      initial_node = initial_node.next_list_item
+    end
+    return initial_node.payload
+  end
+
 
 
 
