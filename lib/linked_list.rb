@@ -35,7 +35,6 @@ class LinkedList
       initial_node.payload
     end
   end
-#_----
 
   def size
     return @count
@@ -51,7 +50,13 @@ class LinkedList
     return initial_node.payload
   end
 
-
+  def to_s
+    if @head_item.nil?
+      "| |"
+    else
+      "| #{@head_item.payload} |"
+    end
+  end
 
 
 end
