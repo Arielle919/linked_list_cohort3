@@ -2,35 +2,40 @@ class LinkedList
   attr_accessor :payload, :head_item
 
   def initialize(*payload)
+    @last_node = nil
     @count = 0
-    @last_item = nil
+    payload.each do |item|
+      add_item(item)
+    end
   end
 
   def add_item payload
-    if @head_item == nil
-      @head_item = LinkedListItem.new(payload)
+    if @head_node.nil?
+      @head_node = LinkedListItem.new(payload)
       @count += 1
-      initial_node = @head_item
+      @last_node = @head_node
     else
-      initial_node = @head_item
-      while initial_node.next_list_item != nil
-        initial_node = initial_node.next_list_item
+      last_node = @head_node
+      while last_node.last? == false
+        last_node = last_node.next_list_item
       end
-      initial_node.next_list_item = LinkedListItem.new(payload)
-      @count += 1
-      @last_item = initial_node.next_list_item
+      last_node.next_list_item = LinkedListItem.new(payload)
+      @count +=1
+      @last_node = @last_node.next_list_item
     end
   end
 
   def get(index)
     if index < 0
       raise IndexError
-    elsif @head_item == nil
-      raise IndexError
     else
-      initial_node = @head_item
+      initial_node = @head_node
       index.times do #this is a ruby loop
-        initial_node == nil ? (raise IndexError) : initial_node = initial_node.next_list_item
+        if initial_node == nil
+          raise IndexError
+        else
+          initial_node = initial_node.next_list_item
+        end
       end
       initial_node.payload
     end
@@ -40,23 +45,34 @@ class LinkedList
     return @count
   end
 
-   def last
-    return @head_item if @head_item == nil
-
-    initial_node = @head_item
-    until initial_node.last? do
-      initial_node = initial_node.next_list_item
+  def last
+    if @last_node == nil
+      nil
+    else
+      @last_node.payload
     end
-    return initial_node.payload
   end
 
   def to_s
-    if @head_item.nil?
-      "| |"
+    if @head_node == nil
+      '| |'
     else
-      "| #{@head_item.payload} |"
+      @node_array = @head_node.payload
+      head_node = @head_node
+      while head_node.last? == false
+        @node_array += ", #{head_node.next_list_item.payload}"
+        head_node = head_node.next_list_item
+      end
+      '| ' + @node_array + ' |'
     end
   end
+
+def [](index)
+  get(index)
+end
+
+
+
 
 
 end
