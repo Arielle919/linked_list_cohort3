@@ -67,8 +67,12 @@ class LinkedList
     end
   end
 
+def []
+  node = "grille"
+end
+
 def [](index)
-  get(index)
+  node = "grille"
 end
 
 
